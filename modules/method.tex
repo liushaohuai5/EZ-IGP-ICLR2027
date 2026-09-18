@@ -118,7 +118,7 @@ z^{(k)}_j(s)=\mathcal I_j(s)[k],
 \qquad
 a^{(k)}=\mathrm{dec}\big(\mathbf z^{(k)}\big).
 \end{equation}
-\textcolor{blue}{The Top-$K$ step samples distinct bins without replacement within each dimension, then uses rank alignment to form joint candidates. It is not equivalent to exact without-replacement Top-$K$ sampling from the full product distribution; it is a parallelizable structured approximation that avoids enumerating the $V^{|A|}$ joint grid.}
+\textcolor{blue}{The Top-$K$ step samples distinct bins without replacement within each dimension, then uses rank alignment to form joint candidates. It is not equivalent to exact Top-$K$ sampling without replacement from the full product distribution; it is a parallelizable structured approximation that avoids enumerating the $V^{|A|}$ joint grid.}
 
 \textbf{Distillation from the search-improved policy.}
 Given the candidate set $\{a^{(k)}\}_{k=1}^{K}$, the search procedure produces a distribution $\pi_{\mathrm{imp}}(a^{(k)}\mid s)$ supported on the $K$ candidates, with $\sum_{k=1}^{K}\pi_{\mathrm{imp}}(a^{(k)}\mid s)=1$. We distill $\pi_{\mathrm{imp}}$ into the per-dimension categorical policy by marginalizing it onto each action dimension:
@@ -147,7 +147,7 @@ Because the support of $\pi_{\mathrm{imp}}$ coincides with the policy support, t
 \]
 For a fixed scoring function $\widehat Q$, this gives
 $\max_{a\in\mathcal A_{t+1}}\widehat Q(s,a)\ge
-\max_{a\in\mathcal A_t}\widehat Q(s,a)$, so refinement cannot discard the best candidate already found. This is only a candidate-retention guarantee, not monotonic policy improvement: changing value estimates, finite search budgets, and later learning updates can still make realized performance non-monotonic.} This is an MPPI-style outer loop in discrete policy space: unlike TDMPC2~\citep{hansen2023td}, which refines on continuous support, IGP refines the per-dimension categorical logits via Gumbel-sampled discrete candidates.
+\max_{a\in\mathcal A_t}\widehat Q(s,a)$, so refinement cannot discard the best candidate already found. This is only a candidate-retention guarantee, not monotonic policy improvement: changing value estimates, finite search budgets, and later learning updates can still make realized performance non-monotonic.} This is an MPPI-style outer loop in discrete policy space: unlike TD-MPC2~\citep{hansen2023td}, which refines on continuous support, IGP refines the per-dimension categorical logits via Gumbel-sampled discrete candidates.
 
 For the per-step logit update, we use a local kernel around the selected bin index $z^{(k_{\mathrm{sel}})}_j$:
 \begin{equation}

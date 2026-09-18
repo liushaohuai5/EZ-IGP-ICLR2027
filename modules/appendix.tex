@@ -1,7 +1,7 @@
 \section{Proofs}
 \subsection{Proof of Proposition~\ref{prop:gaussian_var_inflation}}
 \label{app:proof_of_var_inflation_multi_dim}
-\begin{proof}[Proof: Inflation of Gaussian policy variance (multi-dimension perspective)]
+\begin{proof}[Proof: Inflation of Gaussian policy variance (multidimensional perspective)]
 
 Under the local first-order approximation,
 \[
@@ -142,7 +142,7 @@ This proves the claim.
 \end{equation}
 for all $a$ in a neighborhood of $a^*(s)$.
 
-Consider a Gaussian policy $a \sim \pi(\cdot|s)=\mathcal{N}\bigl(\mu(s),\Sigma(s)\bigr)$,where $\Sigma(s)=\mathrm{diag}(\sigma^2(s))$. Assume the policy is locally converged in the sense that $\mu(s)=a^*(s)$. Then
+Consider a Gaussian policy $a \sim \pi(\cdot|s)=\mathcal{N}\bigl(\mu(s),\Sigma(s)\bigr)$, where $\Sigma(s)=\mathrm{diag}(\sigma^2(s))$. Assume the policy is locally converged in the sense that $\mu(s)=a^*(s)$. Then
 \begin{equation}
     \mathbb{E}_{a\sim\pi(\cdot|s)}[Q(s,a)]
     \le
@@ -406,16 +406,16 @@ and weaker ranking.
 \section{Training Curves}
 \label{sec:app_curves}
 
-This section presents the full training dynamics of EZ-IGP and the baselines on the two benchmark suites used in our evaluation: the high-dimensional subset of DMControl (DMC-Hard) and HumanoidBench-Hard. While the per-task scores reported in Tables~\ref{tab:dmc_scores_with_igp} and \ref{tab:humanoidbench_hard} summarize \textit{final} performance, they do not directly reflect how each method behaves during the course of training. The curves below complement those tables by exposing two additional dimensions of method quality: \textit{learning speed}, i.e., how quickly returns rise as a function of environment interactions, and \textit{learning stability}, i.e., how consistently performance is maintained across seeds and across the training budget.
+This section presents the full training dynamics of EZ-IGP and the baselines on the two benchmark suites used in our evaluation: the high-dimensional subset of DMControl (DMC-Hard) and HumanoidBench-Hard. While the per-task scores reported in Tables~\ref{tab:dmc_scores_with_igp} and \ref{tab:humanoidbench_hard} summarize \textit{peak} performance, they do not directly reflect how each method behaves during the course of training. The curves below complement those tables by exposing two additional dimensions of method quality: \textit{learning speed}, i.e., how quickly returns rise as a function of environment interactions, and \textit{learning stability}, i.e., how consistently performance is maintained across seeds and across the training budget.
 
 In all figures, the $y$-axis denotes the unnormalized episodic return and the $x$-axis denotes environment steps in millions. Each curve is aggregated over 5 random seeds; solid lines correspond to the seed mean and shaded regions to 95\% bootstrap confidence intervals. We report \textit{unnormalized} returns here so that readers can directly compare to the raw scores used by prior work and to the per-task random/success thresholds listed in Table~\ref{tab:humanoidbench_hard}.
 
-Fig.~\ref{fig:dmc-unnorm-curves} reports the curves on the 7-task DMC-Hard suite, comprising 4 dog tasks (\textit{dog-stand}, \textit{dog-walk}, \textit{dog-run}, \textit{dog-trot}) and 3 humanoid tasks (\textit{humanoid-stand}, \textit{humanoid-walk}, \textit{humanoid-run}). These two embodiment families differ markedly in morphology and physical modeling, so their joint inclusion lets us assess whether the gains from EZ-IGP transfer across embodiments rather than being tied to a specific robot. Reading the curves alongside Table~\ref{tab:dmc_scores_with_igp} also clarifies an effect that final-score tables can hide: on the more dynamic tasks such as \textit{dog-run} and \textit{dog-trot}, EZ-IGP's advantage opens up early in training and is preserved throughout, indicating better sample efficiency rather than only a higher asymptote.
+Fig.~\ref{fig:dmc-unnorm-curves} reports the curves on the 7-task DMC-Hard suite, comprising 4 dog tasks (\textit{dog-stand}, \textit{dog-walk}, \textit{dog-run}, \textit{dog-trot}) and 3 humanoid tasks (\textit{humanoid-stand}, \textit{humanoid-walk}, \textit{humanoid-run}). These two embodiment families differ markedly in morphology and physical modeling, so their joint inclusion lets us assess whether the gains from EZ-IGP transfer across embodiments rather than being tied to a specific robot. Reading the curves alongside Table~\ref{tab:dmc_scores_with_igp} also clarifies an effect that peak-score tables can hide: on the more dynamic tasks such as \textit{dog-run} and \textit{dog-trot}, EZ-IGP's advantage opens up early in training and is preserved throughout, indicating better sample efficiency rather than only a higher asymptote.
 
 \begin{figure}[ht]
     \centering
     \includegraphics[width=1.0\linewidth]{figs/dmc_unnorm_curves_igp.pdf}
-    \caption{\textbf{Unnormalized curves on DMControl Hard tasks.} \textit{y}-axis denotes the episodic return and \textit{x}-axis represents environment interactions per million. All experiments use 5 different random seeds and 95\% confidence intervals. Per-task scores are listed in Table~\ref{tab:dmc_scores_with_igp}.} 
+    \caption{\textbf{Unnormalized curves on DMControl Hard tasks.} The \textit{y}-axis denotes episodic return, and the \textit{x}-axis denotes environment steps (millions). Curves are aggregated over five random seeds, and shaded regions denote 95\% confidence intervals. Per-task scores are listed in Table~\ref{tab:dmc_scores_with_igp}.}
     \label{fig:dmc-unnorm-curves}
 \end{figure}
 
@@ -424,7 +424,7 @@ Fig.~\ref{fig:hb-unnorm-curves} reports the analogous curves on the 14-task Huma
 \begin{figure}[ht]
     \centering
     \includegraphics[width=1.0\linewidth]{figs/hard_unnorm_curves_igp.pdf}
-    \caption{\textbf{Unnormalized curves on HumanoidBench-Hard benchmark.} \textit{y}-axis denotes the episodic return and \textit{x}-axis represents environment interactions per million. All experiments use 5 different random seeds and 95\% confidence intervals. Per-task random and success thresholds are listed in Table~\ref{tab:humanoidbench_hard}.}
+    \caption{\textbf{Unnormalized curves on the HumanoidBench-Hard benchmark.} The \textit{y}-axis denotes episodic return, and the \textit{x}-axis denotes environment steps (millions). Curves are aggregated over five random seeds, and shaded regions denote 95\% confidence intervals. Per-task random and success thresholds are listed in Table~\ref{tab:humanoidbench_hard}.}
     \label{fig:hb-unnorm-curves}
 \end{figure}
 

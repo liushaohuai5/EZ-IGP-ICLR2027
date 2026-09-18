@@ -1,0 +1,9 @@
+\section{Preliminaries}
+
+We build IGP on MuZero-style search-based policy improvement. We briefly review two relevant components: Sampled MuZero, which extends MuZero to large action spaces through sampling, and Gumbel MuZero, which formulates search as a finite-budget policy-improvement operator.
+
+\textbf{Sampled MuZero with Gaussian proposals.}
+Sampled MuZero~\citep{hubert2021learning} extends MuZero to large or continuous action spaces by sampling a small candidate set from a proposal distribution $\beta_\theta$, typically a Gaussian policy. Given candidates $\mathcal{A}_K(s)=\{a_1,\dots,a_K\}\sim \beta_\theta(\cdot\mid s)$, MCTS is applied only over this finite set, producing an improved search policy $\pi_{\mathrm{imp}}$ summarized by visit counts, with $a_{\mathrm{sel}}=\arg\max_k \pi_{\mathrm{imp}}(a_k\mid s)$. This finite-support target is distilled back into the proposal policy, either through a cross-entropy/KL loss restricted to $\mathcal{A}_K(s)$ or by maximizing $\log\beta_\theta(a_{\mathrm{sel}}\mid s)$.
+
+\textbf{Policy improvement with Gumbel search.}
+Gumbel MuZero~\citep{danihelka2022policy} casts search as a policy-improvement operator under a finite simulation budget. Given a prior $\beta_\theta(\cdot\mid s)$, it perturbs the prior logits with i.i.d.\ Gumbel noise and applies sequential halving over the selected candidates, allocating simulations to actions that are both likely under the prior and promising under value-guided search. Under suitable assumptions, such as reliable value estimates and correct backups, the resulting search policy $\pi_{\mathrm{imp}}(\cdot\mid s)$ improves over the prior and is used as the training target for $\beta_\theta$. We adopt this construction for the inner search step throughout this paper.

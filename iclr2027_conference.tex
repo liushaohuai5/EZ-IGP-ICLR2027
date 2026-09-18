@@ -1,0 +1,59 @@
+\documentclass{article}
+
+\usepackage{iclr2027_conference,times}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{booktabs}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{bm}
+\usepackage{mathtools}
+\usepackage{amsthm}
+\usepackage{graphicx}
+\usepackage{wrapfig}
+\usepackage{subcaption}
+\usepackage{microtype}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage{url}
+
+% Finalize revision markup inherited from the earlier submission.
+\colorlet{blue}{black}
+\newcommand{\added}[1]{#1}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\newtheorem{proposition}{Proposition}
+\newtheorem{remark}{Remark}
+\newtheorem{corollary}{Corollary}
+
+\title{Iterative Gumbel Planning for Continuous Control}
+\author{Anonymous authors}
+
+% Keep this commented for the double-blind submission.
+% \iclrfinalcopy
+
+\begin{document}
+
+\maketitle
+
+\input{modules/abstract}
+\input{modules/intro}
+\input{modules/related_work}
+\input{modules/prelim}
+\input{modules/method}
+\input{modules/experiments}
+\input{modules/discussion}
+
+% These required/recommended statements do not count toward the main-text limit.
+\clearpage
+\input{statements}
+
+\bibliography{main}
+\bibliographystyle{iclr2027_conference}
+
+\appendix
+\input{modules/appendix}
+
+\end{document}

@@ -1,0 +1,10 @@
+\section{Related Work}
+
+\textbf{Discrete policies for continuous control.}
+Discrete action representations have long been explored to enable value-based learning and stabilize continuous control. To address the combinatorial explosion in high-dimensional action spaces, prior work often relies on per-dimension factorization~\citep{tavakoli2018action, tang2020discretizing} or hierarchical action selection~\citep{mao2020poly, seo2024coarse}. More recently, action discretization has also been adopted in vision-language-action (VLA) models~\citep{brohan2022rt, zitkovich2023rt, kim2024openvla, liu2026oat}, mainly due to the autoregressive format of pretrained transformers. In contrast, our work studies discretization from the perspective of search-based RL optimization, aiming to align the policy support with finite-support search targets in high-dimensional continuous control.
+
+\textbf{Search-based policy improvement.}
+Search-based methods treat lookahead planning as a policy improvement operator and have driven major progress in discrete-action domains~\citep{silver2017mastering, schrittwieser2020mastering, ye2021mastering, danihelka2022policy}. Existing adaptations to continuous control typically sample candidates from a Gaussian proposal and perform search over this continuous subset~\citep{hubert2021learning, wang2024efficientzero}. However, distilling the resulting finite-support search target back into a continuous Gaussian introduces projection errors and variance inflation, a structural limitation that we formally analyze in \S\ref{sec:analysis_method}.
+
+\textbf{Iterative refinement in model-based planning.}
+Model-based planning methods improve decisions through iterative refinement. MPPI~\citep{williams2017information}, TD-MPC2~\citep{hansen2023td}, and related trajectory optimization methods such as CEM repeatedly sample, evaluate, and update continuous action proposals. These approaches naturally operate on continuous distributions, whereas our work translates iterative refinement to a discrete, factorized policy space, enabling search-style improvement without Gaussian projection.

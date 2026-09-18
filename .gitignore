@@ -1,0 +1,21 @@
+# LaTeX build products
+*.aux
+*.bbl
+*.blg
+*.brf
+*.fdb_latexmk
+*.fls
+*.log
+*.out
+*.run.xml
+*.synctex.gz
+*.toc
+*.xdv
+
+# The rendered submission is generated locally.
+/iclr2027_conference.pdf
+
+# Editor and OS metadata
+.DS_Store
+*.swp
+*~

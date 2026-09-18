@@ -1,0 +1,7 @@
+\section{Discussion}
+\label{sec:discussion}
+
+This work identifies a structural mismatch between search-based policy improvement and Gaussian policies in continuous control. Since search improves over a finite set of candidate actions, distilling its output into a continuous Gaussian introduces a non-vanishing projection error that can inflate policy variance and degrade returns. IGP addresses this mismatch with a per-dimension factorized categorical policy whose support is aligned with search candidates, replacing Gaussian projection error with bounded discretization error.
+Empirically, EZ-IGP achieves strong performance on both DMControl and HumanoidBench, showing that factorized discrete policies can serve as a practical alternative to Gaussian policies in high-dimensional continuous control. The ablations further clarify the key trade-offs: finer discretization improves action precision up to a moderate resolution, while excessive refinement can over-concentrate the policy and weaken exploration.
+
+Several \textbf{limitations} remain. IGP uses fixed uniform discretization and a factorized action representation, which may be suboptimal when action dimensions require different resolutions or exhibit strong dependencies. Its performance also depends on search hyperparameters such as bin count, candidate number, and refinement rounds. Future work could explore adaptive discretization, structured or autoregressive discrete policies, adaptive refinement schedules, and validation on real robots.
